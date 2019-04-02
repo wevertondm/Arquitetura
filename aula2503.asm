@@ -1,0 +1,27 @@
+TITLE PROGRAMA PARA IMPRESSAO DE 'STRING'
+.MODEL SMALL
+.STACK 100H
+.DATA
+MENSAGEM DB 'ALO! Como voces estao indo!$'
+.CODE
+MAIN PROC
+;
+;inicializando o registrador DS
+;
+    MOV AX,@DATA
+    MOV DS,AX            ;segmento de dados inicializando
+;
+;obtendo o offset da posição de momoria de MENSAGEM
+;
+    LEA DX,MENSAGEM     ;offset do endereço vai DX
+;exibindo a MENSAGEM
+;
+    MOV AH,9            ;funcao DOS para exibir 'string'
+    INT 21H             ;exibindo
+;
+;retorno ao DOS
+;
+    MOV AH,4CH          ;funcao DOS para saida
+    INT 21H             ;saindo
+MAIN ENDP
+    END MAIN
